@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.log
+*.task
+.env
+.vscode/
+node_modules/
+

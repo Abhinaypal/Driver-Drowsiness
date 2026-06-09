@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Driver Drowsiness System</title>
+  <meta name="description" content="Real-time driver drowsiness detection system with live camera feed and alert panel.">
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>Driver Drowsiness Detection System</h1>
+        <p class="lead">Real-time eye monitoring — start detection to launch the OpenCV analysis window.</p>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- Left: Camera preview -->
+      <section class="card">
+        <h2>Live Camera Preview</h2>
+        <div class="video-wrap">
+          <video id="video" autoplay playsinline muted></video>
+          <div id="videoPlaceholder" class="video-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15 10l4.553-2.07A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+            </svg>
+            <p>Camera is off</p>
+          </div>
+        </div>
+
+        <!-- Only 2 buttons -->
+        <div class="controls">
+          <button id="cameraToggle" class="btn">Start Camera</button>
+          <button id="detectionToggle" class="btn btn-detect">Start Detection</button>
+        </div>
+
+        <div id="status" class="status-bar">
+          <span class="status-dot" id="cameraDot"></span>
+          Camera: <span id="cameraLabel">Idle</span>
+        </div>
+        <div id="detectionStatus" class="status-bar">
+          <span class="status-dot" id="detectionDot"></span>
+          Detection: <span id="detectionLabel">Stopped</span>
+        </div>
+
+        <p class="hint" id="detectionHint"></p>
+      </section>
+
+      <!-- Right: Alert panel -->
+      <aside class="card">
+        <h2>Alert Panel</h2>
+        <div id="alertBox" class="alert">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-text">DROWSY ALERT!</div>
+          <div class="alert-sub">Eyes closed too long — wake up!</div>
+        </div>
+        <div id="safeBox" class="safe-box">
+          <div class="safe-icon">✅</div>
+          <div class="safe-text">Driver is Awake</div>
+        </div>
+
+        <h3>Session Log</h3>
+        <ul id="log" class="log"></ul>
+        <div class="log-actions">
+          <button id="downloadLog" class="btn">Download Log</button>
+          <button id="clearLog" class="btn btn-ghost">Clear</button>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <small>Run <code>py web/server.py</code> from the project root, then open <code>http://localhost:8000/</code></small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
